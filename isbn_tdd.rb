@@ -12,10 +12,10 @@ def test_is_string_all_numeric_12
   assert_equal(12, booknum.size)
 end
 
-# def test_is_string_all_numeric_9
-#   booknum = "893378989"
-#   assert_equal(9, booknum.size)
-# end
+def test_is_string_all_numeric_9 #both tests cannot pass at same time with same string
+  booknum = "893378989"
+  assert_equal(9, booknum.size)
+end
 
 
 
