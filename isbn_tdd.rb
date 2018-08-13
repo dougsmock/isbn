@@ -8,7 +8,7 @@ def test_assert_1_equals_1
 end
 
 def test_is_string_all_numeric_12
-  booknum = "893378989090f"
+  booknum = "893378989090"
   assert_equal(12, booknum.size)
 end
 
