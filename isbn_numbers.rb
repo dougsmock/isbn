@@ -13,8 +13,6 @@ def book_long(booknum) #changes string to array of one char each
   book_arr
 end
 
-
-
 def invalid_char_ten(booknum)
   book_arr = book_long(booknum)
   p book_arr
@@ -44,11 +42,35 @@ def invalid_char_ten(booknum)
     book_arr
 end
 
-  
+def xposition_ten(booknum)
+  book_arr = invalid_char_ten(booknum)
+  p book_arr
+  i = 0
+  while i < 9
+    if booknum[i] == "X" || booknum == "x"
+      p "Invalid number; X in improper position"
+      exit!
+    end
+    i += 1
+  end
+  p "Valid 10-character number!"
+  book_arr
+end
 
-booknum = "1234-5678 9X" # 10 char correct
+def math_ten(booknum)
+  book_arr = xposition_ten(booknum)
+  checkdig = book_arr[9]
+  checkmath = (book_arr[0] * 1) + (book_arr[1] * 2) + (book_arr[2] * 3) + (book_arr[3] * 4) + (book_arr[4] * 5) + (book_arr[5] * 6) + (book_arr[6] * 7) + (book_arr[7] * 8) + (book_arr[8] * 9)
+  checkdig_check = checkmath % 11
+  p checkdig_check
+
+end
+
+
+booknum = "1234-5678 90" # 10 char correct
 book_long(booknum) # sends booknum to function
 invalid_char_ten(booknum)
+xposition_ten(booknum)
 
 
 
