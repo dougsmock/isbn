@@ -1,12 +1,31 @@
-def book_sz(booknum)
+def book_arr(booknum)
+  booknum.split("")
   p booknum
-  p booknum.size
-  if booknum.size != 12 && booknum.size != 9
-    p "Number is invalid."
-  end
-  booknum
+
 end
 
-booknum = "893378989d"
-book_sz(booknum)
-p booknum
+
+#
+# def book_sz(booknum)
+#   p booknum
+#   p booknum.size
+#   if booknum.size != 12 && booknum.size != 9
+#     p "Number is invalid."
+#   end
+#   booknum
+# end
+#
+
+
+
+
+
+
+booknum = "89337 898 9"
+book_arr(booknum)
+
+
+
+
+# book_sz(booknum)
+#booknum returned as entered
