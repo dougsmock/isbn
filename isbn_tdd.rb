@@ -27,10 +27,10 @@ def test_string_no_with_hyphens_and_spaces()
   assert_equal(13, book_long(book_arr))
 end
 
-# def test_if_letters_are_invalid # tested in both 10 and 13 chars
-#   booknum = "89337898123ff"
-#   assert_equal(false, booknum)
-# end
+def test_if_letters_are_valid_in_10_chars
+  book_arr = "12345678FX"
+  assert_equal(true, invalid_char_ten(book_arr))
+end
 
 
 
