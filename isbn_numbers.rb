@@ -10,10 +10,13 @@ def book_long(booknum) #changes string to array of one char each
     p "Entry invalid; not correct length."
     exit!
   end
-  book_arr.length
+  book_arr
 end
 
-def invalid_char_ten(book_arr)
+
+
+def invalid_char_ten(booknum)
+  book_arr = book_long(booknum)
   p book_arr
   alpha1 = ('A'..'W').to_a
   alpha2 = ('Y'..'w').to_a
@@ -23,22 +26,29 @@ def invalid_char_ten(book_arr)
   char3 = (':'..'?').to_a
   bad_char = alpha1 + alpha2 + alpha3 + char1 + char2 + char3
   p bad_char
+
   i = 0
-    while i < book_arr.length do
-      p book_arr.length
-      if book_arr[i].include?(bad_char)
-        p "Entry invalid; illegal characters."
-        exit!
-      else
-        i += i + 1
+    while i < book_arr.length
+      j = 0
+      while j < bad_char.length
+        if book_arr[i] == bad_char[j]
+          p "Entry invalid; illegal character."
+          exit!
+        end
+        # p "jay #{j}"
+        j += 1
       end
+      # p "eye #{i}"
+      i += 1
     end
-    p book_arr
     book_arr
 end
 
-booknum = "22345678FX" # 10 char correct
+  
+
+booknum = "1234-5678 9X" # 10 char correct
 book_long(booknum) # sends booknum to function
+invalid_char_ten(booknum)
 
 
 
@@ -48,7 +58,17 @@ book_long(booknum) # sends booknum to function
 
 
 
+
+
+# this is merely practice on nested loops
+# i = 0
 #
-# def isbn_numeric(book_arr)
-# stringer = "" # knock this out
+# while i < 3 do
+#   j = 0
+#   while j < 10 do
+#     puts "jay #{j}"
+#     j += 1
+#   end
+#   puts "eye #{i}"
+#   i += 1
 # end
