@@ -1,9 +1,9 @@
 def book_long(booknum) #changes string to array of one char each
   book_arr = booknum.each_char.to_a
-  p book_arr
+  # p book_arr
   book_arr.delete_if {|bookn| bookn == " "} #removes spaces
   book_arr.delete_if {|bookn| bookn == "-"} #removes hyphens
-  p book_arr
+  # p book_arr
   if book_arr.length == 13 || book_arr.length == 10
     p "Entry is correct length."
   else
@@ -15,7 +15,7 @@ end
 
 def invalid_char_ten(booknum)
   book_arr = book_long(booknum)
-  p book_arr
+  # p book_arr
   alpha1 = ('A'..'W').to_a
   alpha2 = ('Y'..'w').to_a
   alpha3 = ('y'..'z').to_a
@@ -44,7 +44,7 @@ end
 
 def xposition_ten(booknum)
   book_arr = invalid_char_ten(booknum)
-  p book_arr
+  # p book_arr
   i = 0
   while i < 9
     if booknum[i] == "X" || booknum == "x"
@@ -53,24 +53,54 @@ def xposition_ten(booknum)
     end
     i += 1
   end
-  p "Valid 10-character number!"
   book_arr
 end
 
 def math_ten(booknum)
   book_arr = xposition_ten(booknum)
-  checkdig = book_arr[9]
-  checkmath = (book_arr[0] * 1) + (book_arr[1] * 2) + (book_arr[2] * 3) + (book_arr[3] * 4) + (book_arr[4] * 5) + (book_arr[5] * 6) + (book_arr[6] * 7) + (book_arr[7] * 8) + (book_arr[8] * 9)
-  checkdig_check = checkmath % 11
-  p checkdig_check
 
+  book_int = []
+  j = 0
+  while j < 9
+    book_int[j] = book_arr[j].to_i
+    j += 1
+  end
+
+  book_int << book_arr[9]
+  # p book_int
+
+  checkmath = (book_int[0] * 1) + (book_int[1] * 2) + (book_int[2] * 3) + (book_int[3] * 4) + (book_int[4] * 5) + (book_int[5] * 6) + (book_int[6] * 7) + (book_int[7] * 8) + (book_int[8] * 9)
+  checkdig_check = checkmath % 11
+
+  # p checkmath
+  # p checkdig_check
+
+  if (checkdig_check == 10 && book_arr[9] == "X") || (checkdig_check == 10 && book_arr[9] == "x")
+    p "Number is valid!"
+  elsif checkdig_check == book_arr[9]
+    p "Number is valid!"
+  else
+    p "Number is invalid."
+  end
 end
 
 
-booknum = "1234-5678 90" # 10 char correct
+
+
+
+
+
+
+
+
+
+
+
+booknum = "1234-5678 9X"
 book_long(booknum) # sends booknum to function
 invalid_char_ten(booknum)
 xposition_ten(booknum)
+math_ten(booknum)
 
 
 
