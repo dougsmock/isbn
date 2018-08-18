@@ -120,25 +120,48 @@
 # Refactoring here ////////////////////////////
 
 
+def remove_hyphens_spaces(isbn)
+  arr = isbn.split("")
+  arr.delete_if {|c| c==" " || c=="-"}
+  end
+
 def check_length(isbn)
   isbn.length == 10 || isbn.length == 13
 end
 
-def check_isbn(isbn)
+def invalid_char(isbn)
+  alpha1 = ('A'..'W').to_a
+  alpha2 = ('Y'..'w').to_a
+  alpha3 = ('y'..'z').to_a
+  char1 = ('!'..',').to_a
+  char2 = ('.'..'/').to_a
+  char3 = (':'..'?').to_a
+  bad_char = alpha1 + alpha2 + alpha3 + char1 + char2 + char3
+
+  i = 0
+    while i < isbn.length
+      j = 0
+      while j < bad_char.length
+        if isbn[i] == bad_char[j]
+          nil
+        end
+        j += 1
+      end
+      i += 1
+    end
+end
+
+def math_10(isbn)
   arr = isbn.split("")
-  arr.delete_if {|c| c==" " || c=="-"}
 
-  check_length(arr) == true
-
-  isbn_sum = 0
-  isbn_check = arr.pop
-  if isbn_check.downcase == "x"
+  if arr.pop == "x" || arr.pop == "X"
     isbn_check = 10
   else
     isbn_check = isbn_check.to_i
   end
 
-  arr.each_with_index do |v, i|
+  isbn_sum = 0
+  arr.each_index do |v, i|
     unless v.to_i.to_s == v
       return false
     end
@@ -153,7 +176,9 @@ def check_isbn(isbn)
 end
 
 
-def check_isbn_13(isbn)
+def math_13(isbn)
+  arr = isbn.split("")
+  isbn.delete {|c| c==" " || c=="-"}
     i = 0
   while i < 13 do
     isbn[i].to_i
@@ -163,8 +188,8 @@ def check_isbn_13(isbn)
   isbn_sum = isbn[0] + (isbn[1] * 3) + isbn[2] + (isbn[3] * 3) + isbn[4] + (isbn[5] * 3) + isbn[6] + (isbn[7] * 3) + isbn[8] + (isbn[9] * 3) + isbn[10] + (isbn[11] * 3)
 
   isbn_mod = isbn_sum % 10
-  isbn_digit = 10 - isbn_mod
+  isbn_check = 10 - isbn_mod
 
-  isbn_digit == isbn[12]
+  isbn_check == isbn[12]
 
 end
