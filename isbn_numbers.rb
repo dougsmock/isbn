@@ -85,34 +85,34 @@
 #   booknum
 # end
 #
-def math_ten(booknum) #function to do 10-number math
-  p "5/ math 10 called"
-  book_arr = xposition_ten(booknum)
-
-  book_int = []
-  j = 0
-  while j < 9
-    book_int[j] = book_arr[j].to_i
-    j += 1
-  end
-
-  book_int << book_arr[9]
-  # p book_int
-
-  checkmath = (book_int[0] * 1) + (book_int[1] * 2) + (book_int[2] * 3) + (book_int[3] * 4) + (book_int[4] * 5) + (book_int[5] * 6) + (book_int[6] * 7) + (book_int[7] * 8) + (book_int[8] * 9)
-  checkdig_check = checkmath % 11
-
-  # p checkmath
-  # p checkdig_check
-
-  if (checkdig_check == 10 && book_arr[9] == "X") || (checkdig_check == 10 && book_arr[9] == "x")
-    p "Number is valid!"
-  elsif checkdig_check == book_arr[9]
-    p "Number is valid!"
-  else
-    p "Number is invalid."
-  end
-end
+# def math_ten(booknum) #function to do 10-number math
+#   p "5/ math 10 called"
+#   book_arr = xposition_ten(booknum)
+#
+#   book_int = []
+#   j = 0
+#   while j < 9
+#     book_int[j] = book_arr[j].to_i
+#     j += 1
+#   end
+#
+#   book_int << book_arr[9]
+#   # p book_int
+#
+#   checkmath = (book_int[0] * 1) + (book_int[1] * 2) + (book_int[2] * 3) + (book_int[3] * 4) + (book_int[4] * 5) + (book_int[5] * 6) + (book_int[6] * 7) + (book_int[7] * 8) + (book_int[8] * 9)
+#   checkdig_check = checkmath % 11
+#
+#   # p checkmath
+#   # p checkdig_check
+#
+#   if (checkdig_check == 10 && book_arr[9] == "X") || (checkdig_check == 10 && book_arr[9] == "x")
+#     p "Number is valid!"
+#   elsif checkdig_check == book_arr[9]
+#     p "Number is valid!"
+#   else
+#     p "Number is invalid."
+#   end
+# end
 #
 # def math_13(booknum) #function to do 13-number math
 #   p "6/ math 13 called."
@@ -140,7 +140,7 @@ end
 # ten_or_thirteen(booknum) # checks whether 10 or 13 characters
 
 
-# Refactoring here ////////////////////////////
+# //////////////////////////////////
 
 
 def remove_hyphens_spaces(isbn)
@@ -175,7 +175,25 @@ def invalid_char(isbn)
     end
 end
 
-def math_10(isbn) # do we need a no-x function?
+def no_wrong_x10(isbn) # The last fronter
+  arr = isbn.split("")
+  arr.pop
+
+  if arr.include?("X") || arr.include?("x")
+    return false
+  else
+    return true
+  end
+end
+
+#   unless arr.include?("X") || arr.include?("x")
+#     true
+#   else
+#     false
+#   end
+# end
+
+def math_10(isbn) #
   arr = isbn.split("")
   j = 0
   isbn_sum = 0
@@ -196,9 +214,6 @@ def math_10(isbn) # do we need a no-x function?
     mod = "x"
   end
 
-    # p check_dig
-    # p mod
-
   if check_dig == mod
     return true
   else
@@ -218,11 +233,9 @@ def math_13(isbn)
 
   isbn_sum = 0
   isbn_sum = arr[0] + (arr[1] * 3) + arr[2] + (arr[3] * 3) + arr[4] + (arr[5] * 3) + arr[6] + (arr[7] * 3) + arr[8] + (arr[9] * 3) + arr[10] + (arr[11] * 3)
-  p "isbn_sum = #{isbn_sum}"
-    check_dig = arr[12]
-  p "check_dig = #{check_dig}"
+
+  check_dig = arr[12]
   mod = 10 - (isbn_sum % 10)
-  p "mod = #{mod}"
 
   if check_dig == mod
     return true

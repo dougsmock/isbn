@@ -3,13 +3,13 @@ require_relative "isbn_numbers.rb"
 
 class HashSize < Minitest::Test
 
-# def test_if_hyphens_spaces_out10
-#   assert_equal(["1", "2", "3", "4", "5", "6", "7", "8", "9", "X"], math_10("123-45-6789 X"))
-# end
+def test_if_hyphens_spaces_out10
+  assert_equal(["1", "2", "3", "4", "5", "6", "7", "8", "9", "X"], remove_hyphens_spaces("123-45-6789 X"))
+end
 
-# def test_if_hyphens_spaces_out10
-#   assert_equal(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "1", "2", "3"], math_13("123-45-6789 0123"))
-# end
+def test_if_hyphens_spaces_out13
+  assert_equal(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "1", "2", "3"], remove_hyphens_spaces("123-45-6789 0123"))
+end
 
 def test_if_length_is_10
   assert_equal(true, check_length("123456789X"))
@@ -38,5 +38,11 @@ end
 def test_if_number_is_valid_13
   assert_equal(true, math_13("9781861972712"))
 end
+
+def test_if_no_renegade_x_10
+  assert_equal(false, no_wrong_x10("x234x6789X"))
+end
+
+
 
 end
