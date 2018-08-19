@@ -218,11 +218,13 @@ def math_13(isbn)
 
   isbn_sum = 0
   isbn_sum = arr[0] + (arr[1] * 3) + arr[2] + (arr[3] * 3) + arr[4] + (arr[5] * 3) + arr[6] + (arr[7] * 3) + arr[8] + (arr[9] * 3) + arr[10] + (arr[11] * 3)
-
-  check_dig = arr[12]
-
+  p "isbn_sum = #{isbn_sum}"
+    check_dig = arr[12]
+  p "check_dig = #{check_dig}"
   mod = 10 - (isbn_sum % 10)
-  if check_dig = mod
+  p "mod = #{mod}"
+
+  if check_dig == mod
     return true
   else
     return false
