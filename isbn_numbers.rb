@@ -222,10 +222,6 @@ def math_13(isbn)
   check_dig = arr[12]
 
   mod = 10 - (isbn_sum % 10)
-    # if mod == 10
-    #   mod = 0
-    # end
-
   if check_dig = mod
     return true
   else

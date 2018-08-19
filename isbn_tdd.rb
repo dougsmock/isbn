@@ -36,7 +36,7 @@ def test_if_number_is_valid_10
 end
 
 def test_if_number_is_valid_13
-  assert_equal(true, math_13("9780262134729"))
+  assert_equal(true, math_13("9781861972712"))
 end
 
 end
