@@ -12,7 +12,7 @@ def main(isbn)
             results = math_10(isbn_arr)
           else
             results = false
-            p isbn_arr
+            # p isbn_arr
           end
 
       elsif isbn_arr.length == 13
@@ -60,11 +60,11 @@ end
 
 def remove_hyphens_spaces(isbn)
   isbn = isbn.split("")
-  p isbn
-  p "length is #{isbn.length}"
+  # p isbn
+  # p "length is #{isbn.length}"
   isbn = isbn.delete_if {|c| c==" " || c=="-"}
-  p isbn
-  p "length is #{isbn.length}"
+  # p isbn
+  # p "length is #{isbn.length}"
   isbn
 end
 
@@ -98,7 +98,7 @@ end
 
 def math_10(isbn)
   # arr = isbn.split("")
-  p "beginning math 10"
+  # p "beginning math 10"
   j = 0
   isbn_sum = 0
   while j < 9
@@ -130,7 +130,7 @@ def math_13(isbn)
   end
   isbn_sum = 0
   isbn_sum = isbn[0] + (isbn[1] * 3) + isbn[2] + (isbn[3] * 3) + isbn[4] + (isbn[5] * 3) + isbn[6] + (isbn[7] * 3) + isbn[8] + (isbn[9] * 3) + isbn[10] + (isbn[11] * 3)
-  p "The sum of all those numbers is #{isbn_sum}"
+  # p "The sum of all those numbers is #{isbn_sum}"
   check_dig = isbn[12]
   if (isbn_sum % 10) == 0
     mod = 0

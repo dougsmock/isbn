@@ -1,0 +1,40 @@
+<html>
+
+
+<body>
+<form method="post" action="/isbn_test">
+<div>
+  <center>
+
+<h1>Enter ISBN number</h1>
+  <h5><input type="text" name="isbn" rows="1" cols="20"></h5>
+  <input type="submit" class="isbn" value="Check">
+  <!-- on input stuff -->
+
+</center>
+</div>
+</form>
+
+<div>
+  <center>
+  <table border="0" cellspacing="5" cellpadding="5">
+    <tr>
+    <% csv_table.headers.each do |header| %>
+      <th><%= header %></th>
+    <% end %>
+    </tr>
+    <% csv_table.each do |row| %>
+      <tr>
+      <% row.each do |element| %>
+        <td><%= element[1] %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </table>
+  </center>
+
+
+</div>
+
+
+</body>
