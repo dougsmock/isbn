@@ -2,24 +2,27 @@ def main(isbn)
   results = false
     if valid_char(isbn) == true
       isbn_arr = remove_hyphens_spaces(isbn)
-      if isbn.length == 10
+      if isbn_arr.length == 10
           if no_wrong_x10(isbn_arr) == true
-            if math_10(isbn_arr) == true
-              results = true
-            else
-              results = false
-            end
+            # if math_10(isbn_arr) == true
+            #   results = true
+            # else
+            #   results = false
+            # end
+            results = math_10(isbn_arr)
           else
             results = false
+            p isbn_arr
           end
 
-      elsif isbn.length == 13
+      elsif isbn_arr.length == 13
           if no_x13(isbn_arr) == true
-              if math_13(isbn_arr) == true
-                results = true
-              else
-                results = false
-              end
+              # if math_13(isbn_arr) == true
+              #   results = true
+              # else
+              #   results = false
+              # end
+              results = math_13(isbn_arr)
           else
               results = false
           end
@@ -57,11 +60,14 @@ end
 
 def remove_hyphens_spaces(isbn)
   isbn = isbn.split("")
-    # p isbn.length
-  isbn.delete_if {|c| c==" " || c=="-"}
-    # p isbn.length
+  p isbn
+  p "length is #{isbn.length}"
+  isbn = isbn.delete_if {|c| c==" " || c=="-"}
+  p isbn
+  p "length is #{isbn.length}"
   isbn
 end
+
 
 # def check_length(isbn)
 #   isbn.length == 10 || isbn.length == 13
@@ -92,13 +98,14 @@ end
 
 def math_10(isbn)
   # arr = isbn.split("")
-  # p "in math 10"
+  p "beginning math 10"
   j = 0
   isbn_sum = 0
   while j < 9
     isbn[j] = isbn[j].to_i #makes number 0-8 an integer
     isbn_sum +=isbn[j] * (j + 1) # does the math
     j += 1
+    p "the sum is #{isbn_sum}"
   end
 
   if isbn[9].downcase != "x"
@@ -123,12 +130,15 @@ def math_13(isbn)
   end
   isbn_sum = 0
   isbn_sum = isbn[0] + (isbn[1] * 3) + isbn[2] + (isbn[3] * 3) + isbn[4] + (isbn[5] * 3) + isbn[6] + (isbn[7] * 3) + isbn[8] + (isbn[9] * 3) + isbn[10] + (isbn[11] * 3)
-
+  p "The sum of all those numbers is #{isbn_sum}"
   check_dig = isbn[12]
-  mod = 10 - (isbn_sum % 10)
+  if (isbn_sum % 10) == 0
+    mod = 0
+  else
+    mod = 10 - (isbn_sum % 10)
+  end
 
   check_dig == mod #if true returns true
-
 end
 
 

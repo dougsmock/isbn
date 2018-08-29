@@ -63,10 +63,15 @@ class HashSize < Minitest::Test
 #   assert_equal(false, main("978316148410x"))
 # end
 #
-def test_remove_hyphens_spaces
-  assert_equal(true, main("123456789 X"))
+def test_main_function
+  assert_equal(true, main("978-3-16-148410-0"))
 end
 #
+
+# def test_check_13_math
+#   assert_equal(true, main("978-18619-78 769"))
+# end
+
 # def test_check_13_math
 #   assert_equal(true, main("9781861978769"))
 # end
